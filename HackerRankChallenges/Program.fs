@@ -1,20 +1,11 @@
-﻿open System
-open IntroductionModule;
-open InputHelper
+﻿open InputHelper
+open System
+open LambdaCalculus
 
 [<EntryPoint>]
 let main argv =
 
-    let factors = inputToIntList ()
-    let powers = inputToIntList ()
-    let range = inputToIntList ()
-
-    let left = float range.Head
-    let right = float (List.last range)
-
-    let (area, volume) = defineIntegral factors powers left right
-
-    area |> (printfn "%.4f")
-    volume |> (printfn "%.4f")
+    let lambdaInput = Console.ReadLine()
+    printfn "%s" (reduceLambda lambdaInput)
 
     0

@@ -1,5 +1,7 @@
 ﻿module DefineIntegralModule
 
+open System
+
 let defineIntegral (factors: int list) (powers: int list) (left: float) (right: float) : float * float =
     let calcSubintervalLength (L: float) (R: float) (dx: float) : int =
         int ((R - L) / dx) + 1

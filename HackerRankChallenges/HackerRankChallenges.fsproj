@@ -6,8 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="Helpers\CollectionsHelper.fs" />
     <Compile Include="Helpers\InputHelper.fs" />
-    <Compile Include="FunctionalProgramming\IntroductionModule.fs" />
+    <Compile Include="FunctionalProgramming\IntroductionModule\SerialExpansion.fs" />
+    <Compile Include="FunctionalProgramming\IntroductionModule\DefineIntegral.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 

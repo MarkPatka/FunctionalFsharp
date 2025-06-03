@@ -58,15 +58,44 @@ let rec exprToString expr =
 
  // Function to parse and reduce
 let reduceLambda input =
-    // Hardcode the parsing of ((λx.(x y))(λz.z))
-    let parsed = 
+    // parsing of ((λx.(x y))(λz.z))
+    // let parsed1 = 
+    //     Apply(
+    //         Lambda("x", Apply(Var "x", Var "y")),
+    //         Lambda("z", Var "z"))
+    
+    // parsing of ((λx.((λy.(x y))x))(λz.w))
+    //let parsed2 = 
+    //    Apply(
+    //        Lambda("x", Apply(Lambda("y", Apply(Var "x", Var "y")), Var "x")),
+    //        Lambda("z", Var "w"))
+
+    // parsing of ((λx.(x x))(λx.(x x))) 
+    //let parsed3 = 
+    //    Apply(
+    //        Lambda("x", Apply(Var "x", Var "x")),
+    //        Lambda("x", Apply(Var "x", Var "x")))
+
+    // parsing of (λg.((λf.((λx.(f (x x))) (λx.(f (x x))))) g)) 
+    let parsed4 =
         Apply(
-            Lambda("x", Apply(Var "x", Var "y")),
-            Lambda("z", Var "z"))
+            Lambda("g",
+                Apply(
+                    Lambda("f",
+                        Apply(
+                            Lambda("x", Apply(Var "f", Apply(Var "x", Var "x"))),  
+                            Lambda("x", Apply(Var "f", Apply(Var "x", Var "x")))
+                        )
+                    ),
+                    Var "g"
+                )
+            ),
+            Var "g"  
+        )
+
+    let reduced = reduce parsed4
     
-    let reduced = reduce parsed
-    
-    if reduced = parsed then
+    if reduced = parsed4 then
         "CAN'T REDUCE"
     else
         exprToString reduced
